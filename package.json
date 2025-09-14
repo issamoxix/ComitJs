@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "comit": "./index.js"
+    "jcomit": "./index.js"
   },
   "dependencies": {
     "enquirer": "^2.4.1"
