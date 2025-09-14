@@ -1,9 +1,9 @@
 {
-  "name": "comit",
+  "name": "jcomit",
   "version": "1.0.0",
-  "description": "",
+  "description": "Comit is a powerful tool that automatically generates commit messages based on staged changes in a Git repository. It analyzes diffs to create structured and meaningful commit messages, helping maintain consistency in your commit history. Additional features include automatic branch name generation and an AI-powered chat assistant for coding-relate",
   "license": "ISC",
-  "author": "",
+  "author": "issamoxix",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
