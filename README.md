@@ -60,4 +60,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 This project is licensed under the ISC License - see the package.json file for details.
 
 ## Author
-issamoxix
+@issamoxix
