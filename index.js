@@ -3,7 +3,6 @@ const { exec } = require("child_process");
 const { Select } = require("enquirer");
 
 const actionUrl = "https://api.comit.dev/actions";
-
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
