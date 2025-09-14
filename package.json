@@ -1,0 +1,18 @@
+{
+  "name": "comit",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "comit": "./index.js"
+  },
+  "dependencies": {
+    "enquirer": "^2.4.1"
+  }
+}
