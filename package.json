@@ -13,6 +13,7 @@
     "jcomit": "./index.js"
   },
   "dependencies": {
-    "enquirer": "^2.4.1"
+    "enquirer": "^2.4.1",
+    "keytar": "^7.9.0"
   }
 }
