@@ -17,7 +17,7 @@ async function handleCommands(action) {
           //   "    -c, c <arg>              	    : Get a prompt response based on the given argument.\n" +
           "    login, -l, --login <token>  : Login to the application.\n" +
           //   "    -l, l, live, --live       	    : Get a live prompt response.\n" +
-          //   "    refactor, r, -r, --refactor	    : Run the refactor command.\n" +
+          "    refactor, r, -r, --refactor	    : Run the refactor command.\n" +
           "    help, h, -h, --help      	    : Show this help message."
       );
       return;

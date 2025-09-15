@@ -1,8 +1,14 @@
 const { Select } = require("enquirer");
 const { exec } = require("child_process");
 const keytar = require("keytar");
+const { marked } = require("marked");
+const { default: TerminalRenderer } = require("marked-terminal");
 
 const ActionUrl = "https://api.comit.dev/actions";
+
+marked.setOptions({
+  renderer: new TerminalRenderer(),
+});
 
 RETRIES = 3;
 
@@ -71,25 +77,27 @@ async function loadToken() {
 }
 
 async function RefactorStaged() {
-  exec("git --no-pager diff --staged", async (error, stagedDiff, stderr) => {
-    if (stagedDiff.length > 5) {
-      const token = (await loadToken()) || "default";
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-      const payload = {
-        code: stagedDiff,
-      };
-      const response = await fetch(`${ActionUrl}/refactore?token=${token}`, {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: myHeaders,
-      });
+  const stagedDiff = await getStagedDiff();
+  if (stagedDiff.length < 5) {
+    console.log("No staged changes");
+    return;
+  }
 
-      const responseJson = await response.json();
-      console.log(responseJson);
-      const refactor = responseJson.message;
-    }
+  const token = (await loadToken()) || "default";
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  const payload = {
+    code: stagedDiff,
+  };
+  const response = await fetch(`${ActionUrl}/refactore?token=${token}`, {
+    method: "POST",
+    body: JSON.stringify(payload),
+    headers: myHeaders,
   });
+
+  const responseJson = await response.json();
+  console.log(marked(responseJson.message));
+
   return;
 }
 
