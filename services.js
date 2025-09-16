@@ -26,7 +26,7 @@ async function GetCommitMessage() {
   setTimeout(() => {
     spinner.color = "yellow";
     spinner.text = "Cooking...";
-  }, 1000);
+  }, 2000);
 
   const response = await fetch(`${ActionUrl}/commit?token=${token}`, {
     method: "POST",
