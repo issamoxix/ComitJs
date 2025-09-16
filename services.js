@@ -52,6 +52,10 @@ async function SelectComit(comitMessages) {
 
   try {
     const commit = await prompt.run();
+    if (commit == "Refresh") {
+      await SelectComit([""]);
+      return;
+    }
     exec(`git commit -m  "${commit}"`, (error, stdout, stderr) => {
       if (stderr) {
         console.log(stderr);
