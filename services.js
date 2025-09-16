@@ -3,6 +3,7 @@ const { exec } = require("child_process");
 const keytar = require("keytar");
 const { marked } = require("marked");
 const { default: TerminalRenderer } = require("marked-terminal");
+const { default: ora } = require("ora");
 
 const ActionUrl = "https://api.comit.dev/actions";
 
@@ -20,11 +21,19 @@ async function GetCommitMessage() {
   const payload = {
     code: stagedDiff,
   };
+
+  const spinner = ora("Fetching commit message").start();
+  setTimeout(() => {
+    spinner.color = "yellow";
+    spinner.text = "Cooking...";
+  }, 1000);
+
   const response = await fetch(`${ActionUrl}/commit?token=${token}`, {
     method: "POST",
     body: JSON.stringify(payload),
     headers: myHeaders,
   });
+  spinner.stop();
 
   const responseJson = await response.json();
   const commitMessages = responseJson.message;
