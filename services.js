@@ -47,7 +47,7 @@ async function SelectComit(comitMessages) {
   const prompt = new Select({
     name: "Comit",
     message: "Select commit message:",
-    choices: comitMessages,
+    choices: ["Refresh", ...comitMessages],
   });
 
   try {
