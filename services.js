@@ -33,8 +33,8 @@ async function GetCommitMessage() {
     body: JSON.stringify(payload),
     headers: myHeaders,
   });
-  spinner.stop();
 
+  spinner.stop();
   const responseJson = await response.json();
   const commitMessages = responseJson.message;
   return commitMessages;
