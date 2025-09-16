@@ -124,6 +124,10 @@ function getStagedDiff() {
       if (stderr) {
         console.error(stderr);
       }
+      if (stdout.length < 5) {
+        console.log("No staged changes found");
+        return;
+      }
       resolve(stdout);
     });
   });
