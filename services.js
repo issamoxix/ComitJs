@@ -89,18 +89,12 @@ async function loadToken() {
   return token;
 }
 
-async function RefactorStaged() {
-  const stagedDiff = await getStagedDiff();
-  if (stagedDiff.length < 5) {
-    console.log("No staged changes");
-    return;
-  }
-
+async function RefactorStaged(blockCode) {
   const token = (await loadToken()) || "default";
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   const payload = {
-    code: stagedDiff,
+    code: blockCode,
   };
   const response = await fetch(`${ActionUrl}/refactore?token=${token}`, {
     method: "POST",
@@ -132,10 +126,32 @@ function getStagedDiff() {
     });
   });
 }
+function GetStaggedDiffCached() {
+  return new Promise((resolve, reject) => {
+    exec(
+      "git --no-pager diff --cached --unified=0",
+      (error, stdout, stderr) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+        if (stderr) {
+          console.error(stderr);
+        }
+        if (stdout.length < 5) {
+          console.error("No staged changes");
+          return;
+        }
+        resolve(stdout);
+      }
+    );
+  });
+}
 
 module.exports = {
   LoginUser,
   RefactorStaged,
   GetCommitMessage,
   SelectComit,
+  GetStaggedDiffCached,
 };
